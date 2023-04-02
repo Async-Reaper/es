@@ -1,0 +1,25 @@
+@import "normalize";
+@import "./fonts/fonts";
+@import "globals";
+@import "./variables/global";
+@import "./variables/mockups";
+@import "mixins";
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    color: var(--color-white-bg);
+    background: var(--color-gray-secondary);
+    overflow-x: hidden;
+}
+
+.page_platform {
+    background: rgba(155, 83, 200, 0.14);
+    min-height: 100vh;
+}
+
+.page_platform__content {
+    position: relative;
+    padding: 20px;
+    margin: 0 0 0 120px;
+}

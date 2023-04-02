@@ -1,0 +1,28 @@
+.lesson {
+    display: flex;
+    align-items: center;
+    grid-gap: 30px;
+
+    .video {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 112px;
+        height: 112px;
+        background: var(--color-gray-secondary);
+        box-shadow: 0 30px 30px rgb(109 94 88 / 25%);
+        border-radius: 21.4724px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            background: var(--color-gray-primary);
+        }
+
+        .play__icon {
+            position: absolute;
+            left: 52px;
+        }
+    }
+}

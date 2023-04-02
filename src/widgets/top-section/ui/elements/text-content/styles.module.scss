@@ -1,0 +1,9 @@
+.content__text {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+
+    span {
+        color: var(--color-violet-primary);
+    }
+}
