@@ -37,8 +37,7 @@ const Component: React.FC<Props> = ({ setVisible }) => {
     newPassword.onBlur();
     repeatNewPassword.onBlur();
     if (
-      !newPassword.emailValid
-            && !newPassword.isEmpty
+            !newPassword.isEmpty
             && !repeatNewPassword.isEmpty
             && !password.isEmpty
     ) {
