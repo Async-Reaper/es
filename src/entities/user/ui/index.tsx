@@ -27,7 +27,7 @@ const Component = () => {
   return (
      <div className={cls.user_info}>
         <div className={cls.top_info_part}>
-           <Avatar src={`${API_URL}${data?.icon}` || ava} variant='xl' />
+           <Avatar src={data?.icon ? `${API_URL}/`+ data?.icon : ava} variant='xl' />
            <Typography variant='h1' color='violet-primary'>
               #
               {data?.id}
