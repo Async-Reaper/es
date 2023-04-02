@@ -100,7 +100,7 @@ const Component = () => {
 
   const addTraining = () => (
      <>
-        <div className={cls.add_comment__btn} onClick={() => setIsVisibleAddLink(true)}>
+        <div className={cls.add_resource__btn} onClick={() => setIsVisibleAddLink(true)}>
            <Typography variant='body'>Добавить тренажер</Typography>
         </div>
         <ModalWindow isVisible={isVisibleAddLink} setIsVisible={setIsVisibleAddLink}>
