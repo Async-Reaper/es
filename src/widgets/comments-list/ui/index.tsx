@@ -68,7 +68,7 @@ const Component: React.FC<Props> = ({ id }) => {
                  {comment.answers.map((answer) => (
                     <div className={cls.answer__wrapper}>
                        <div className={cls.answer__header}>
-                          <Avatar variant='xs' src={answer.teacher.icon ?`${API_URL}/${answer.teacher.icon}` : ava} />
+                          <Avatar variant='xs' src={answer.teacher.icon ?`${API_URL}${answer.teacher.icon}` : ava} />
                           <div>
                              <Typography color='black-bg' tag='span'>{answer.teacher.full_name}</Typography>
                              <Typography color='black-light'>{answer.text}</Typography>

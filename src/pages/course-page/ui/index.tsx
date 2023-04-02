@@ -34,10 +34,10 @@ const Component = () => {
       <div className={cls.video__lessons}>
          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
          <video
-           src={`${API_URL}/${resource.file}`}
+           src={`${API_URL}${resource.file}`}
            controls
          >
-            <source src={`${API_URL}/${resource.file}`} />
+            <source src={`${API_URL}${resource.file}`} />
          </video>
          <div className={cls.add_comment__btn} onClick={() => setIsVisibleAddComment(true)}>
             <Typography variant='body'>Оставить комментарий</Typography>
@@ -56,7 +56,7 @@ const Component = () => {
       <div>
          <a
            className={cls.link}
-           href={`${API_URL}/${resource.file}`}
+           href={`${API_URL}${resource.file}`}
            target='_blank'
            download
            rel='noreferrer'
@@ -80,7 +80,7 @@ const Component = () => {
       <div>
          <a
            className={cls.link}
-           href={`${API_URL}/${resource.file}`}
+           href={`${API_URL}${resource.file}`}
            target='_blank'
            download
            rel='noreferrer'
