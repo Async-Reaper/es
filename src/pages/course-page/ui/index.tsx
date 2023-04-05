@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import { Sidebar } from 'widgets/sidebar';
-import { Button, ModalWindow, Typography } from 'shared/ui';
+import {Button, Loader, ModalWindow, Typography} from 'shared/ui';
 import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch';
 import { useParams } from 'react-router-dom';
 import { getCourse } from 'pages/course-page/model/api';
@@ -142,6 +142,7 @@ const Component = () => {
   };
 
   return (
+      <Suspense fallback={<Loader />}>
      <div className='page_platform'>
         <Sidebar />
         <div className='page_platform__content'>
@@ -244,7 +245,8 @@ const Component = () => {
            <CreateTopic id={id} setVisible={setIsVisibleCreateTopic} />
         </ModalWindow>
      </div>
+      </Suspense>
   );
 };
 
-export const CoursePage = React.memo(Component);
+export default Component;

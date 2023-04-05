@@ -15,29 +15,32 @@ import {
   VideoLessonsWrapper,
   VideoTitle,
 } from './ui';
+import {Element} from "react-scroll";
 
 const Component = () => (
-   <LessonsWrapper>
-      <Container>
-         <LessonsInner>
-            <TopIcon />
-            <SectionTitle />
-            <VideoTitle />
-            <VideoLessonsWrapper>
-               <PlayerWrapper>
-                  <Player />
-                  <PlayerBenefits />
-               </PlayerWrapper>
-               <LessonsList>
-                  {
-                        lessons.map((lesson) => <Lesson lesson={lesson} />)
-                     }
-                  <LessonsAdditional />
-               </LessonsList>
-            </VideoLessonsWrapper>
-         </LessonsInner>
-      </Container>
-   </LessonsWrapper>
+    <Element name={'lesson'}>
+       <LessonsWrapper>
+          <Container>
+             <LessonsInner>
+                <TopIcon />
+                <SectionTitle />
+                <VideoTitle />
+                <VideoLessonsWrapper>
+                   <PlayerWrapper>
+                      <Player />
+                      <PlayerBenefits />
+                   </PlayerWrapper>
+                   <LessonsList>
+                      {
+                            lessons.map((lesson) => <Lesson lesson={lesson} />)
+                         }
+                      <LessonsAdditional />
+                   </LessonsList>
+                </VideoLessonsWrapper>
+             </LessonsInner>
+          </Container>
+       </LessonsWrapper>
+    </Element>
 );
 
 export const LessonsSection = React.memo(Component);

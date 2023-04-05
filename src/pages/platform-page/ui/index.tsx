@@ -1,10 +1,12 @@
 import React, { Suspense } from 'react';
 import { Sidebar } from 'widgets/sidebar';
 import { CoursesList } from 'widgets/courses-list';
+import {Loader} from "../../../shared/ui";
 
 const Component = () => (
-   <Suspense fallback={<div>Loading...</div>}>
+   <Suspense fallback={<Loader />}>
       <div className='page_platform'>
+          <Loader />
          <div>
             <Sidebar />
          </div>

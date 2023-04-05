@@ -3,25 +3,28 @@ import {
 } from 'widgets';
 import { TestSection } from 'widgets/test-section';
 import { CoursesSection } from 'widgets/courses-section';
-import { BlackBG, BlackGradient } from 'shared/ui';
+import {BlackBG, BlackGradient, Loader} from 'shared/ui';
+import {Suspense} from "react";
 
 function Component() {
   //   const { t } = useTranslation('main');
   return (
-     <div>
-        <BlackBG>
-           <Header />
-           <TopSection />
-        </BlackBG>
-        <LessonsSection />
-        <TestSection />
-        <CoursesSection />
-        <BlackGradient>
-           <QuestionsSection />
-           <UsedPlatformSection />
-           <Footer />
-        </BlackGradient>
-     </div>
+      <Suspense fallback={<Loader />}>
+         <div>
+            <BlackBG>
+               <Header />
+               <TopSection />
+            </BlackBG>
+            <LessonsSection />
+            <TestSection />
+            <CoursesSection />
+            <BlackGradient>
+               <QuestionsSection />
+               <UsedPlatformSection />
+               <Footer />
+            </BlackGradient>
+         </div>
+      </Suspense>
   );
 }
 
