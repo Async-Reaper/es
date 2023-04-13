@@ -7,10 +7,11 @@ import cls from './styles.module.scss';
 
 interface Props {
   setVisible?: (arg: boolean) => void;
-  id: number
+  idTopic: number | undefined;
+  idCourse: number | undefined;
 }
 
-const Component: React.FC<Props> = ({ setVisible, id }) => {
+const Component: React.FC<Props> = ({ setVisible, idTopic, idCourse }) => {
   const { success, error } = getStatusRequest();
   const dispatch = useAppDispatch();
 
@@ -21,7 +22,7 @@ const Component: React.FC<Props> = ({ setVisible, id }) => {
   }, [setVisible, success]);
 
   const handleDeleteTopic = () => {
-      dispatch(deleteTopic(id));
+      dispatch(deleteTopic(idTopic, idCourse));
   };
 
   return (
@@ -31,7 +32,7 @@ const Component: React.FC<Props> = ({ setVisible, id }) => {
              <Button full variant='xs' background='violet-primary' onClick={handleDeleteTopic}>
                  Да
              </Button>
-             <Button full variant='xs' background='violet-primary' onClick={handleDeleteTopic}>
+             <Button full variant='xs' background='violet-primary' onClick={() => setVisible && setVisible(false)}>
                  Нет
              </Button>
          </div>

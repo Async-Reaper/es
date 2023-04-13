@@ -6,7 +6,7 @@ import {AnswerComment} from 'features/answer-comment/ui';
 import dateFormat from 'dateformat';
 import {CommentType} from 'widgets/comments-list';
 import {getAllComments} from 'widgets/comments-list/model/api';
-import {API_URL} from 'shared/libs/constants/baseURL';
+import {API_URL} from 'shared/constants/baseURL';
 import cls from './styles.module.scss';
 import ava from '../../../entities/user/img/ava.png';
 import {getCookie} from "../../../shared/libs/cookie";

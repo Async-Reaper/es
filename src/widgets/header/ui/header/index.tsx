@@ -12,6 +12,7 @@ import {Auth, Logout} from 'features';
 import {useAppDispatch} from 'shared/libs/hooks/useAppDispatch';
 import {getInfoUser, getInfoUserSelector} from 'entities/user';
 import cls from './styles.module.scss';
+import {HeaderToolbar} from "../header-toolbar";
 
 interface Props {
 
@@ -23,14 +24,14 @@ const Component: FC<Props> = () => {
     const userData = getInfoUserSelector();
     const token: string = localStorage.getItem('token') || '';
 
-    const [isVisibleClue, setIsVisibleClue] = useState(false);
+    const [isVisibleToolbar, setIsVisibleToolbar] = useState(false);
 
-    const onShowVisibleClue = useCallback(() => {
-        setIsVisibleClue(true)
+    const onShowVisibleToolbar = useCallback(() => {
+        setIsVisibleToolbar(true)
     }, [])
 
-    const onHideVisibleClue = useCallback(() => {
-        setIsVisibleClue(false)
+    const onHideVisibleToolbar = useCallback(() => {
+        setIsVisibleToolbar(false)
     }, [])
 
     useEffect(() => {
@@ -49,22 +50,24 @@ const Component: FC<Props> = () => {
                     </div>
                     <div className={cls.buttons__group}>
                         {
-                            userData
+                            userData.data
                                 ? (
-                                    <div className={cls.header_user__settings}>
-                                        <AppLink to={'/private-cabinet'}
-                                                 onMouseOver={onShowVisibleClue}
-                                                 onMouseOut={onHideVisibleClue}
-                                        >
-                                            <Typography>
-                                                {userData?.data?.full_name}
-                                            </Typography>
-                                        </AppLink>
+                                    <>
+                                        <div className={cls.header_user__settings}>
+                                            <AppLink to={'/private-cabinet'}
+                                                     onMouseOver={onShowVisibleToolbar}
+                                                     onMouseOut={onHideVisibleToolbar}
+                                            >
+                                                <Typography>
+                                                    {userData?.data?.full_name}
+                                                </Typography>
+                                            </AppLink>
+                                            <HeaderToolbar isVisible={isVisibleToolbar}>
+                                                Перейти в личный кабинет
+                                            </HeaderToolbar>
+                                        </div>
                                         <Logout/>
-                                        <Toolbar isVisible={isVisibleClue}>
-                                            Перейти в личный кабинет
-                                        </Toolbar>
-                                    </div>
+                                    </>
                                 )
                                 : (
                                     <Button variant='xs' onClick={() => setIsVisibleLogin(!isVisibleLogin)}>

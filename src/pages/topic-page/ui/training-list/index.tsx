@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import cls from "../styles.module.scss";
-import {API_URL} from "../../../../shared/libs/constants/baseURL";
+import {API_URL} from "../../../../shared/constants/baseURL";
 import {ModalWindow, Typography} from "../../../../shared/ui";
 import {TrainingApparatuses} from "../../model/types";
 import {DeleteResource} from "features";
@@ -31,15 +31,20 @@ const Component: React.FC<Props> = ({trainings}) => {
                     <ModalWindow isVisible={isVisibleDeleteResource} setIsVisible={setIsVisibleDeleteResource}>
                         <DeleteResource id={training.id} setVisible={setIsVisibleDeleteResource}/>
                     </ModalWindow>
-                    <a
-                        className={cls.link}
-                        href={`${API_URL}${training.link}`}
-                        target='_blank'
-                        download
-                        rel='noreferrer'
-                    >
-                        {training.link}
-                    </a>
+                    <div className={cls.resource_text_info__wrapper}>
+                        <Typography tag={"span"} variant={"body"} color={"black-bg"}>
+                            {training.description}
+                        </Typography>
+                        <a
+                            className={cls.link}
+                            href={training.link}
+                            target='_blank'
+                            download
+                            rel='noreferrer'
+                        >
+                            Ссылка
+                        </a>
+                    </div>
                     <Comments id={training.id}/>
                 </div>
             )}

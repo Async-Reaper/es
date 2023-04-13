@@ -4,12 +4,12 @@ export type TopicSchema = {
 
 export type TopicsType = {
   id: number;
-  resources: {
+  resources?: {
     videos: ResourceType[],
     lectures: ResourceType[],
     presentations: ResourceType[]
   },
-  training_apparatuses: TrainingApparatuses[],
+  training_apparatuses?: TrainingApparatuses[],
   name: string;
   description: string;
 };
@@ -17,6 +17,8 @@ export type TopicsType = {
 export type ResourceType = {
   id: number;
   file: string;
+  name: string;
+  description: string;
 };
 
 export type TrainingApparatuses = {

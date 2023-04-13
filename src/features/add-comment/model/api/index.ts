@@ -1,6 +1,6 @@
 import {requestActions} from 'shared/libs/slices';
 import axios from 'axios';
-import {ADD_COMMENT_ENDPOINT, API_URL} from 'shared/libs/constants/baseURL';
+import {ADD_COMMENT_ENDPOINT, API_URL} from 'shared/constants/baseURL';
 import {AddCommentType} from 'features/add-comment/model/types';
 import {getAllComments} from "../../../../widgets/comments-list/model/api";
 

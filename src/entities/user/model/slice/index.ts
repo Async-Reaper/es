@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserType, UserSchema } from 'entities/user/model/types';
 
-const initialState: UserSchema = {
-  loginStatus: false
-};
+const initialState: UserSchema = {};
 
 const userSlice = createSlice({
   name: 'user',
@@ -11,11 +9,9 @@ const userSlice = createSlice({
   reducers: {
     getUserInfo(state, action: PayloadAction<UserType>) {
       state.data = action.payload;
-      state.loginStatus = true;
     },
     logout(state) {
       state.data = null;
-      state.loginStatus = false;
     },
   },
 });

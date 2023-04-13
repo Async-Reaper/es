@@ -9,7 +9,7 @@ import dateFormat from 'dateformat';
 import { ChangeEmail, ChangePassword } from 'features';
 import cls from './styles.module.scss';
 import ava from '../img/ava.png';
-import {API_URL} from "shared/libs/constants/baseURL";
+import {API_URL} from "shared/constants/baseURL";
 
 
 interface Props {

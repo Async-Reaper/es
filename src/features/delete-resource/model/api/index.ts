@@ -1,6 +1,6 @@
 import {requestActions} from 'shared/libs/slices';
 import axios from 'axios';
-import {API_URL, DELETE_RESOURCE_ENDPOINT} from 'shared/libs/constants/baseURL';
+import {API_URL, DELETE_RESOURCE_ENDPOINT} from 'shared/constants/baseURL';
 
 export const deleteResource = (idResource: number) => async (dispatch: AppDispatch) => {
   try {

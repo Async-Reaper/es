@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL, GET_TOPIC_ENDPOINT} from 'shared/libs/constants/baseURL';
+import {API_URL, GET_TOPIC_ENDPOINT} from 'shared/constants/baseURL';
 import {requestActions} from 'shared/libs/slices';
 import {TopicsType} from "../types";
 import {topicActions} from "../slice";

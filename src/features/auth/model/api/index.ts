@@ -1,5 +1,5 @@
 import { AuthAnswer, AuthData } from "features/auth/model/types";
-import { API_URL, LOGIN_ENDPOINT } from "shared/libs/constants/baseURL";
+import { API_URL, LOGIN_ENDPOINT } from "shared/constants/baseURL";
 import { requestActions } from "shared/libs/slices";
 import axios from "axios";
 import { getInfoUser } from "entities/user";

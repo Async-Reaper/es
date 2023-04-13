@@ -1,6 +1,6 @@
 import { requestActions } from 'shared/libs/slices';
 import axios from 'axios';
-import { API_URL, GET_ALL_COMMENTS_ENDPOINT } from 'shared/libs/constants/baseURL';
+import { API_URL, GET_ALL_COMMENTS_ENDPOINT } from 'shared/constants/baseURL';
 
 export const getAllComments = (idRes: any, setRes: any) => async (dispatch: AppDispatch) => {
   try {

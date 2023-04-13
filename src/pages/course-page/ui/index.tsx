@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect, useState} from 'react';
+import React, {Suspense, useCallback, useEffect, useState} from 'react';
 import {Sidebar} from 'widgets/sidebar';
 import {AppLink, Loader, ModalWindow, Typography} from 'shared/ui';
 import {useAppDispatch} from 'shared/libs/hooks/useAppDispatch';
@@ -16,9 +16,16 @@ const Component = () => {
     const [isVisibleCreateTopic, setIsVisibleCreateTopic] = useState(false);
     const [isVisibleDeleteTopic, setIsVisibleDeleteTopic] = useState(false);
 
+    const [idTopic, setIdTopic] = useState<number>(1);
+
+    const showDeleteTopic = useCallback((idTopicWindow: number) => {
+        setIsVisibleDeleteTopic(true)
+        setIdTopic(idTopicWindow)
+    }, [])
+
     useEffect(() => {
         dispatch(getCourse(id));
-    }, [dispatch, id, dataCourse]);
+    }, []);
 
     return (
         <Suspense fallback={<Loader/>}>
@@ -74,15 +81,18 @@ const Component = () => {
                                                 getCookie('is_teacher') === 'true' &&
                                                 <>
                                                     <div className={cls.delete_topic__btn}
-                                                         onClick={() => setIsVisibleDeleteTopic(true)}>
+                                                         onClick={() => showDeleteTopic(topic.id)}>
                                                         <Typography tag={"span"} variant={"small"}>
                                                             Удалить
                                                         </Typography>
                                                     </div>
                                                     <ModalWindow isVisible={isVisibleDeleteTopic}
                                                                  setIsVisible={setIsVisibleDeleteTopic}>
-                                                        <DeleteTopic id={topic.id}
-                                                                     setVisible={setIsVisibleDeleteTopic}/>
+                                                        <DeleteTopic
+                                                            idTopic={idTopic}
+                                                            idCourse={dataCourse?.data?.id}
+                                                            setVisible={setIsVisibleDeleteTopic}
+                                                        />
                                                     </ModalWindow>
                                                 </>
                                             }

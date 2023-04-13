@@ -1,8 +1,9 @@
-.toolbar {
+.header_toolbar {
   position: absolute;
-  bottom: 50px;
-  transition: all .52s;
-  display: none;
+  bottom: 40px;
+  transition: all .3s;
+  opacity: 0;
+  left: -75px;
   transform: translateY(-50px);
   width: max-content;
 

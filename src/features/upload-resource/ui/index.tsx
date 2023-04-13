@@ -16,6 +16,7 @@ const Component: React.FC<Props> = ({setIsVisible, id, transTypeResource}) => {
     const {success, error , loading} = getStatusRequest();
     const dispatch = useAppDispatch();
     const nameResource = useInput('', {isEmpty: true});
+    const descriptionResource = useInput('', {isEmpty: true});
     const [filesCourse, setFilesCourse] = useState<any>([]);
     const [typeResource, setTypeResource] = useState<'presentation ' | 'video' | 'lecture' | any>('video');
 
@@ -48,6 +49,7 @@ const Component: React.FC<Props> = ({setIsVisible, id, transTypeResource}) => {
     const handleUpload = () => {
         nameResource.onBlur();
         dataResource.append('name', nameResource.value)
+        dataResource.append('description', nameResource.value)
         dataResource.append('resource_type', transTypeResource ? transTypeResource : typeResource);
         dataResource.append('resource_file', filesCourse[0]);
 
@@ -65,6 +67,13 @@ const Component: React.FC<Props> = ({setIsVisible, id, transTypeResource}) => {
                 label='Название ресурса'
             />
             {(nameResource.isEmpty && nameResource.isDirty) && <ErrorText>Поле не должно быть пустым</ErrorText>}
+            <Input
+                type='text'
+                value={descriptionResource.value}
+                onChange={descriptionResource.onChange}
+                label='Краткое описание'
+            />
+            {(descriptionResource.isEmpty && descriptionResource.isDirty) && <ErrorText>Поле не должно быть пустым</ErrorText>}
             <div className={cls.select__wrapper}>
                 {
                     !transTypeResource &&

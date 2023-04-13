@@ -30,12 +30,17 @@ const Component = memo(() => {
     const [isVisibleAddResource, setIsVisibleResource] = useState(false);
     const [isVisibleAddLink, setIsVisibleAddLink] = useState(false);
 
-    useEffect(() => {
+
+    const getAllTopicHandler = useCallback(() => {
         dispatch(getTopic(id));
+    }, [dispatch, id])
+
+    useEffect(() => {
+        getAllTopicHandler()
         if (localStorage.getItem('type_learn')) {
             setTypeLearn(JSON.parse(localStorage.getItem('type_learn') || ''));
         }
-    }, [dispatch, id, typeLearn])
+    }, [dispatch, getAllTopicHandler, id, typeLearn])
 
     const setTypeLearnHandler = useCallback((params: string) => {
         setTypeLearn(params)
@@ -100,13 +105,18 @@ const Component = memo(() => {
                                 <div className={cls.variant_learning__list}>
                                     {
                                         getCookie('is_teacher') === 'true'&&
-                                        <div className={cls.create_resource__wrapper} onClick={() => setIsVisibleResource(true)}>
-                                            <div className={cls.create_resource__btn}>
-                                                <Typography variant={"small"} uppercase tag={"strong"}>
-                                                    Добавить ресурс
-                                                </Typography>
+                                        <>
+                                            <div className={cls.create_resource__wrapper} onClick={() => setIsVisibleResource(true)}>
+                                                <div className={cls.create_resource__btn}>
+                                                    <Typography variant={"small"} uppercase tag={"strong"}>
+                                                        Добавить ресурс
+                                                    </Typography>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <ModalWindow isVisible={isVisibleAddResource} setIsVisible={setIsVisibleResource}>
+                                                <UploadResource id={dataTopic?.data?.id} setIsVisible={setIsVisibleResource} />
+                                            </ModalWindow>
+                                        </>
                                     }
                                     {
                                         dataTopic?.data?.resources?.videos?.length !== 0 &&
@@ -142,7 +152,7 @@ const Component = memo(() => {
                                         </div>
                                     }
                                     {
-                                        dataTopic?.data?.training_apparatuses.length !== 0 &&
+                                        dataTopic?.data?.training_apparatuses?.length !== 0 &&
                                         <div className={cls.variant_learning} onClick={() => setTypeLearnHandler('training')}>
                                             <div>
                                                 <Typography tag={"span"} variant='small' color='black-bg'>Тренажеры</Typography>
@@ -176,7 +186,7 @@ const Component = memo(() => {
                                     </>
                                 }
                             </div>
-                            <VideoList videos={dataTopic?.data?.resources.videos}/>
+                            <VideoList videos={dataTopic?.data?.resources?.videos}/>
                         </>
                     }
                     {
@@ -196,7 +206,7 @@ const Component = memo(() => {
                                     </>
                                 }
                             </div>
-                            <LectureList lectures={dataTopic?.data?.resources.lectures}/>
+                            <LectureList lectures={dataTopic?.data?.resources?.lectures}/>
                         </>
                     }
                     {
@@ -216,7 +226,7 @@ const Component = memo(() => {
                                     </>
                                 }
                             </div>
-                            <PresentationList presentations={dataTopic?.data?.resources.presentations}/>
+                            <PresentationList presentations={dataTopic?.data?.resources?.presentations}/>
                         </>
                     }
                     {

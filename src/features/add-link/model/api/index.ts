@@ -1,6 +1,6 @@
 import { requestActions } from 'shared/libs/slices';
 import axios from 'axios';
-import { ADD_LINK_ENDPOINT, API_URL } from 'shared/libs/constants/baseURL';
+import { ADD_LINK_ENDPOINT, API_URL } from 'shared/constants/baseURL';
 import { AddLinkType } from 'features/add-link/model/types';
 
 export const addLink = (data: AddLinkType, id: number | undefined) => async (dispatch: AppDispatch) => {

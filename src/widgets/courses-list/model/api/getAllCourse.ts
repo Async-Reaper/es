@@ -1,6 +1,6 @@
 import { requestActions } from 'shared/libs/slices';
 import axios from 'axios';
-import { API_URL, GET_ALL_COURSES_ENDPOINT } from 'shared/libs/constants/baseURL';
+import { API_URL, GET_ALL_COURSES_ENDPOINT } from 'shared/constants/baseURL';
 import { coursesActions } from 'widgets/courses-list/model/slice';
 import { CoursesType } from 'widgets/courses-list/model/types';
 

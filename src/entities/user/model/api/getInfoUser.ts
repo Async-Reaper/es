@@ -1,9 +1,9 @@
-import axios from "axios";
-import { API_URL, USER_INFO_ENDPOINT } from "shared/libs/constants/baseURL";
+import axios, {AxiosError} from "axios";
+import { API_URL, USER_INFO_ENDPOINT } from "shared/constants/baseURL";
 import { requestActions } from "shared/libs/slices";
 import { userActions } from "../slice";
 import { UserType } from "../types";
-import { setCookie } from "../../../../shared/libs/cookie";
+import {deleteCookie, setCookie} from "../../../../shared/libs/cookie";
 
 export const getInfoUser = () => async (dispatch: AppDispatch) => {
   try {
@@ -20,7 +20,15 @@ export const getInfoUser = () => async (dispatch: AppDispatch) => {
 
     setCookie("full_name", infoUser.full_name);
     setCookie("is_teacher", infoUser.is_teacher);
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      if (error?.response?.data.detail.match(/no such token/i)) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('signature');
+        deleteCookie('token')
+        deleteCookie('full_name');
+        deleteCookie('is_teacher');
+      }
+    }
   }
 };

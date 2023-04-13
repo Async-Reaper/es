@@ -6,7 +6,7 @@ import {Logout} from "features";
 import ava from '../../../entities/user/img/ava.png'
 import {getInfoUser, getInfoUserSelector} from "../../../entities/user";
 import {useAppDispatch} from "../../../shared/libs/hooks/useAppDispatch";
-import {API_URL} from "../../../shared/libs/constants/baseURL";
+import {API_URL} from "../../../shared/constants/baseURL";
 import LoginIcon from '@mui/icons-material/Login';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 

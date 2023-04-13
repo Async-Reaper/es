@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import cls from "../styles.module.scss";
-import {API_URL} from "../../../../shared/libs/constants/baseURL";
+import {API_URL} from "../../../../shared/constants/baseURL";
 import {ModalWindow, Typography} from "../../../../shared/ui";
 import {AddComment} from "../../../../features/add-comment/ui";
 import {CommentsList} from "../../../../widgets/comments-list";
@@ -8,6 +8,7 @@ import {ResourceType} from "../../model/types";
 import {DeleteResource} from "features";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Comments} from "../comments";
+import {getCookie} from "../../../../shared/libs/cookie";
 
 interface Props {
     videos: ResourceType[] | undefined
@@ -20,16 +21,23 @@ const Component: React.FC<Props> = ({videos}) => {
         <div className={cls.resources__list}>
             {videos?.map(video =>
                 <div className={cls.resource__wrapper}>
-                    <div className={cls.delete_topic__btn} onClick={() => setIsVisibleDeleteResource(true)}>
-                        <DeleteIcon />
-                        <Typography tag={"span"} variant={"small"}>
-                            Удалить
-                        </Typography>
-                    </div>
+                    {
+                        getCookie('is_teacher') === 'true' &&
+                        <div className={cls.delete_topic__btn} onClick={() => setIsVisibleDeleteResource(true)}>
+                            <DeleteIcon />
+                            <Typography tag={"span"} variant={"small"}>
+                                Удалить
+                            </Typography>
+                        </div>
+                    }
                     <ModalWindow isVisible={isVisibleDeleteResource} setIsVisible={setIsVisibleDeleteResource}>
                         <DeleteResource id={video.id} setVisible={setIsVisibleDeleteResource}/>
                     </ModalWindow>
                     <div className={cls.video__lessons}>
+                        <div className={cls.resource_text_info__wrapper}>
+                            <Typography tag={"span"} variant={"body"} color={'violet-primary'}>{video.name}</Typography>
+                            <Typography tag={"span"} variant={"body"} color={'black-bg'}>{video.description}</Typography>
+                        </div>
                         <video
                             src={`${API_URL}${video.file}`}
                             controls

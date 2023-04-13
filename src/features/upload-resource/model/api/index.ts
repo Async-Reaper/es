@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { API_URL, UPLOAD_RESOURCE_ENDPOINT } from 'shared/libs/constants/baseURL';
-import { requestActions } from 'shared/libs/slices';
-import {courseActions} from "../../../../pages/course-page/model/slice";
-import {getCourse} from "../../../../pages/course-page/model/api";
+import {API_URL, UPLOAD_RESOURCE_ENDPOINT} from 'shared/constants/baseURL';
+import {requestActions} from 'shared/libs/slices';
 import {getTopic} from "../../../../pages/topic-page/model/api";
 
 export const uploadResourceApi = (data: FormData, id: number | undefined) => async (dispatch: AppDispatch) => {
@@ -12,6 +10,7 @@ export const uploadResourceApi = (data: FormData, id: number | undefined) => asy
       `${API_URL + UPLOAD_RESOURCE_ENDPOINT + id}/resource/`,
       {
         name: data.get('name'),
+        description: data.get('description'),
         resource_type: data.get('resource_type'),
         resource_file: data.get('resource_file'),
       },
