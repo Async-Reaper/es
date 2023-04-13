@@ -1,4 +1,4 @@
-@import "../../../app/styles/mixins";
+@import "../../../../app/styles/mixins";
 
 .header {
     padding: 36px 0;
@@ -24,5 +24,12 @@
 
             grid-gap: 21px;
         }
+    }
+
+    .header_user__settings {
+        position: relative;
+        display: flex;
+        align-items: center;
+        grid-gap: 20px;
     }
 }

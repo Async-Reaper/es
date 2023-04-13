@@ -7,7 +7,12 @@ import { CoursesType } from 'widgets/courses-list/model/types';
 export const getAllCourse = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(requestActions.fetchRequest());
-    const response = await axios.get<CoursesType[]>(API_URL + GET_ALL_COURSES_ENDPOINT);
+    const response = await axios.get<CoursesType[]>(API_URL + GET_ALL_COURSES_ENDPOINT, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Cross-Origin-Opener-Policy': 'same-origin'
+      }
+    });
     const resultResponse = response.data;
     dispatch(coursesActions.getAllCourses(resultResponse));
     dispatch(requestActions.successRequest());

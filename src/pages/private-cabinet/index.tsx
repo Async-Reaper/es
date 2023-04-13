@@ -1,22 +1,30 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import { Sidebar } from 'widgets/sidebar';
 import { Auth } from 'features';
 import { User } from '../../entities';
-import { getInfoUserSelector } from 'entities/user';
+import {getInfoUser, getInfoUserSelector} from 'entities/user';
 import cls from './styles.module.scss';
 import {Loader} from "../../shared/ui";
+import {useAppDispatch} from "../../shared/libs/hooks/useAppDispatch";
 
 const Component = () => {
   const user = getInfoUserSelector();
+  const dispatch = useAppDispatch();
+  const token: string = localStorage.getItem('token') || '';
+
+  useEffect(() => {
+      token && dispatch(getInfoUser());
+  }, [dispatch, token]);
+
   return (
       <Suspense fallback={<Loader/>}>
          <div className='page_platform'>
             <Sidebar />
             <div className='page_platform__content'>
-               {user || localStorage.getItem('token')
+               { token && user.data
                  ? (
                     <div>
-                       <User />
+                       <User user={user?.data} />
                     </div>
                  )
                  : (

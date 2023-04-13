@@ -17,7 +17,7 @@ const Component = () => {
   return (
      <div className={cls.courses__wrapper}>
         {coursesList.data?.map((course: CoursesType) => (
-           <AppLink to={`/course/${course.id}`}>
+           <AppLink to={`/course/${course.id}`} className={cls.course__link}>
               <div aria-label={course.id.toString()} className={cls.course__wrapper}>
                  <div
                    className='course__title'

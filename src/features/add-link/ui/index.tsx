@@ -9,7 +9,7 @@ import { AddLinkType } from 'features/add-link/model/types';
 
 interface Props {
   setVisible?: (arg: boolean) => void;
-  id: number
+  id: number | undefined
 }
 
 const Component: React.FC<Props> = ({ setVisible, id }) => {

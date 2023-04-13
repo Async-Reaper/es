@@ -15,3 +15,5 @@ export { ErrorText } from './error-text';
 export { Toggle } from './toggle';
 export { Typography } from './typography';
 export { Loader } from './loader';
+export { Toolbar } from './toolbar'
+export { LinearProgress } from './linear-progress'

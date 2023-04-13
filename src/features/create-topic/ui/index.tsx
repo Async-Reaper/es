@@ -9,7 +9,7 @@ import { CreateTopicType } from 'features/create-topic/model/types';
 
 interface Props {
   setVisible?: (arg: boolean) => void;
-  id: string | undefined
+  id: number | undefined
 }
 
 const Component: React.FC<Props> = ({ setVisible, id }) => {

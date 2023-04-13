@@ -13,4 +13,5 @@ export interface UserType {
 
 export interface UserSchema {
   data?: UserType | null;
+  loginStatus: boolean;
 }

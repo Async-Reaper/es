@@ -1,8 +1,9 @@
-import { requestActions } from 'shared/libs/slices';
+import {requestActions} from 'shared/libs/slices';
 import axios from 'axios';
-import { AuthAnswer } from 'features/auth/model/types';
-import { API_URL, LOGOUT_ENDPOINT } from 'shared/libs/constants/baseURL';
-import { userActions } from 'entities/user';
+import {AuthAnswer} from 'features/auth/model/types';
+import {API_URL, LOGOUT_ENDPOINT} from 'shared/libs/constants/baseURL';
+import {userActions} from 'entities/user';
+import {deleteCookie} from "../../../../shared/libs/cookie";
 
 export const logout = () => async (dispatch: AppDispatch) => {
   try {
@@ -16,6 +17,11 @@ export const logout = () => async (dispatch: AppDispatch) => {
     });
     localStorage.removeItem('token');
     localStorage.removeItem('signature');
+
+    deleteCookie('token')
+    deleteCookie('full_name');
+    deleteCookie('is_teacher');
+
     dispatch(requestActions.successRequest());
   } catch (e) {
     console.log(e);
