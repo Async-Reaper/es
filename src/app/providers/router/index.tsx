@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import {
-    CoursePage, MainPage, PlatformPage, PrivateCabinet, TopicPage,
+    CoursePage, GropedCoursePage, MainPage, PlatformPage, PrivateCabinet, TopicPage,
 } from 'pages';
 
 function Component() {
@@ -13,6 +13,7 @@ function Component() {
            <Route path='/private-cabinet' element={<PrivateCabinet />} />
            <Route path='/course/:id' element={<CoursePage />} />
             <Route path='/course/:id/topic/:id' element={<TopicPage />} />
+            <Route path='/grouped-courses' element={<GropedCoursePage />} />
         </Routes>
      </Suspense>
   );

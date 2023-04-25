@@ -13,7 +13,15 @@ export const getAllCourse = () => async (dispatch: AppDispatch) => {
         'Cross-Origin-Opener-Policy': 'same-origin'
       }
     });
+
+    const arrGroup: CoursesType[] = []
     const resultResponse = response.data;
+
+    resultResponse.map(course => {
+      course.is_grouped && arrGroup.push(course)
+    });
+    localStorage.setItem('grouped_course', JSON.stringify(arrGroup))
+
     dispatch(coursesActions.getAllCourses(resultResponse));
     dispatch(requestActions.successRequest());
   } catch (e) {

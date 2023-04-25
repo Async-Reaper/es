@@ -5,4 +5,5 @@ export const PlatformPage = lazy(async () => import('./platform-page/ui'));
 export const CoursePage = lazy(async () => import('./course-page/ui/'));
 export const PrivateCabinet = lazy(async () => import('./private-cabinet/'))
 
+export const GropedCoursePage = lazy(async () => import('./groped-course-page/ui'));
 export const TopicPage = lazy(async () => import('./topic-page/ui'))

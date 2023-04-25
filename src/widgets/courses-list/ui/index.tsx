@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { AppLink, Typography } from 'shared/ui';
 import { getAllCoursesSelector } from 'widgets/courses-list/model/selector/getAllCoursesSelector';
 import { CoursesType } from 'widgets/courses-list/model/types';
@@ -10,22 +10,35 @@ const Component = () => {
   const coursesList = getAllCoursesSelector();
   const dispatch = useAppDispatch();
 
+
+
   useEffect(() => {
     dispatch(getAllCourse());
   }, []);
 
+
   return (
      <div className={cls.courses__wrapper}>
+       <AppLink to={'/grouped-courses'} className={cls.course__link}>
+         <div className={cls.course__wrapper}>
+           <div
+               className='course__title'
+           >
+             <Typography tag='h1' variant='body'>Обучение по дисциплинам</Typography>
+           </div>
+         </div>
+       </AppLink>
         {coursesList.data?.map((course: CoursesType) => (
-           <AppLink to={`/course/${course.id}`} className={cls.course__link}>
-              <div aria-label={course.id.toString()} className={cls.course__wrapper}>
-                 <div
-                   className='course__title'
-                 >
+              !course.is_grouped &&
+              <AppLink to={`/course/${course.id}`} className={cls.course__link}>
+                <div aria-label={course.id.toString()} className={cls.course__wrapper}>
+                  <div
+                      className='course__title'
+                  >
                     <Typography tag='h1' variant='body'>{course.name}</Typography>
-                 </div>
-              </div>
-           </AppLink>
+                  </div>
+                </div>
+              </AppLink>
         ))}
      </div>
   );

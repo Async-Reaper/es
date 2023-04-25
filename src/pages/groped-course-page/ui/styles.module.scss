@@ -1,3 +1,19 @@
+.page_wrapper {
+    display: grid;
+    grid-template-columns: max-content auto;
+    background: var(--color-gray-secondary);
+    height: 100%;
+
+    .content_wrapper {
+        display: grid;
+    }
+
+}
+
+.name_block {
+    margin: 0 0 10px;
+}
+
 .courses__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -6,6 +22,7 @@
     grid-auto-flow: row;
 
     .course__link {
+
     }
 
     .course__wrapper {
