@@ -1,0 +1,20 @@
+.comment__wrapper {
+    margin: 0 0 15px;
+
+    .comment__header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .answer__btn {
+        width: max-content;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: var(--color-black-bg);
+
+        &:hover {
+            color: var(--color-violet-primary);
+        }
+    }
+}
+

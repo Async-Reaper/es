@@ -5,9 +5,6 @@
     gap: 35px;
     grid-auto-flow: row;
 
-    .course__link {
-    }
-
     .course__wrapper {
         padding: 0 15px;
         height: 150px;
@@ -15,13 +12,15 @@
         display: flex;
         align-items: center;
         border-radius: 10px;
-        background: linear-gradient(106.72deg, #9b53c8 -19.79%, rgb(53 30 67 / 44%) 99.91%);
+        scale: 0.9;
+        background: linear-gradient(65.4deg, rgb(56, 248, 249) -9.1%, rgb(213, 141, 240) 48%, rgb(249, 56, 152) 111.1%);
+        color: var(--color-black-bg);
         transition: all 0.2s;
         z-index: 9999;
 
         &:hover {
+            scale: 1;
             border-radius: 15px;
-            background: linear-gradient(rgb(53 30 67 / 44%) 99.91%, 106.72deg, #9b53c8 -19.79%);
         }
     }
 }

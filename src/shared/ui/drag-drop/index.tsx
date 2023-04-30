@@ -47,7 +47,6 @@ const Component = (props: Props) => {
           : null}
 
         <div className={cls.wrapper}>
-           {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
            <div
              className={classNames(cls.drop, [], { [cls.active]: drop })}
              onDragEnter={() => setDrop(true)}

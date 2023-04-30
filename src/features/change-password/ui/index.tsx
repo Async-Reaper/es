@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, {FormEvent, useEffect} from 'react';
 import { getStatusRequest } from 'shared/libs/selectors';
 import { Button, ErrorText, Input } from 'shared/ui';
-import { useInput } from 'shared/libs/hooks/useValidation/useInput';
+import { useInput } from 'shared/hooks/useValidation/useInput';
 import { ChangePasswordType } from 'features/change-password/model/types';
-import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch';
-import { changePassword } from 'features/change-password/model/api';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { fetchChangePassword } from 'features/change-password/model/api/changePassword';
 import cls from './styles.module.scss';
 
 interface Props {
@@ -32,21 +32,22 @@ const Component: React.FC<Props> = ({ setVisible }) => {
     }
   }, [success]);
 
-  const handleChangePassword = () => {
+  const handleChangePassword = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     password.onBlur();
     newPassword.onBlur();
     repeatNewPassword.onBlur();
     if (
-            !newPassword.isEmpty
+      !newPassword.isEmpty
             && !repeatNewPassword.isEmpty
             && !password.isEmpty
     ) {
-      dispatch(changePassword(changePasswordData));
+      dispatch(fetchChangePassword(changePasswordData));
     }
   };
 
   return (
-     <div className={cls.change_password__wrapper}>
+     <form className={cls.change_password__wrapper} onSubmit={(e) => handleChangePassword(e)}>
         <div>
            <Input
              type='email'
@@ -71,7 +72,7 @@ const Component: React.FC<Props> = ({ setVisible }) => {
            {(repeatNewPassword.isDirty && repeatNewPassword.isEmpty) && <ErrorText>Поле не должно быть пустым</ErrorText>}
         </div>
 
-        <Button full variant='xs' background='violet-primary' onClick={handleChangePassword}>
+        <Button full variant='xs' background='violet-primary'>
            Сменить пароль
         </Button>
         {
@@ -80,7 +81,7 @@ const Component: React.FC<Props> = ({ setVisible }) => {
               <ErrorText>Произошла ошибка, повторите попытку позже</ErrorText>
               )
           }
-     </div>
+     </form>
   );
 };
 

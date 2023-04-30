@@ -1,55 +1,61 @@
-import React, {FC, useCallback, useEffect, useState} from 'react';
-import {Button, Toolbar, Typography} from 'shared/ui';
-import {logout} from 'features/logout/model/api/logout';
-import {useAppDispatch} from 'shared/libs/hooks/useAppDispatch';
+import React, { FC, useCallback, useState } from 'react';
+import { Button, Toolbar, Typography } from 'shared/ui';
+import { fetchLogout } from 'features/logout/model/api/logout';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { userActions } from 'entities/user';
 import cls from './styles.module.scss';
-import {getInfoUser} from "../../../entities/user";
 
 interface Props {
-    isIcon?: boolean
+  isIcon?: boolean
 }
 
 const Component: FC<Props> = (props) => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-    const [isVisibleClue, setIsVisibleClue] = useState(false);
+  const [isVisibleClue, setIsVisibleClue] = useState(false);
 
-    const onShowVisibleClue = useCallback(() => {
-        setIsVisibleClue(true)
-    }, [])
+  const onShowVisibleClue = useCallback(() => {
+    setIsVisibleClue(true);
+  }, []);
 
-    const onHideVisibleClue = useCallback(() => {
-        setIsVisibleClue(false)
-    }, [])
+  const onHideVisibleClue = useCallback(() => {
+    setIsVisibleClue(false);
+  }, []);
 
-    const {
-        isIcon = false
-    } = props
+  const {
+    isIcon = false,
+  } = props;
 
-    const handleLogout = () => dispatch(logout());
+  const handleLogout = () => {
+    dispatch(fetchLogout());
+  };
 
-    return (
-        <>
-            {
-                isIcon ?
-                    <div
-                        className={cls.logout_icon}
-                        onMouseOver={onShowVisibleClue}
-                        onMouseOut={onHideVisibleClue}
-                        onClick={() => handleLogout()}
-                    >
-                        <LogoutIcon sx={{fontSize: 40}}/>
-                    </div> :
-                    <Button variant='xs' border onClick={() => handleLogout()}>
+  return (
+     <>
+        {
+                isIcon
+                  ? (
+                     <div
+                       className={cls.logout_icon}
+                       onMouseOver={onShowVisibleClue}
+                       onMouseOut={onHideVisibleClue}
+                       onClick={() => handleLogout()}
+                     >
+                        <LogoutIcon sx={{ fontSize: 40 }} />
+                     </div>
+                  )
+                  : (
+                     <Button variant='xs' border onClick={() => handleLogout()}>
                         <Typography>
-                            Выход
+                           Выход
                         </Typography>
-                    </Button>
+                     </Button>
+                  )
             }
-            <Toolbar isVisible={isVisibleClue}>Выйти</Toolbar>
-        </>
-    );
+        <Toolbar isVisible={isVisibleClue}>Выйти</Toolbar>
+     </>
+  );
 };
 
 export const Logout = React.memo(Component);

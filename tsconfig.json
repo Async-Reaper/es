@@ -14,7 +14,7 @@
       "@features": ["./features/"],
       "@shared": ["./shared/"],
       "@pages": ["./pages/"],
-      "@widgets": ["./widgets/"]
+      "@widgets": ["./widgets/"],
     },
     "moduleResolution": "node",
     "esModuleInterop": true,

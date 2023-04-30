@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import { Button, ErrorText, Input } from 'shared/ui';
-import { useInput } from 'shared/libs/hooks/useValidation/useInput';
+import { useInput } from 'shared/hooks/useValidation/useInput';
 import { AuthData } from 'features/auth/model/types';
-import { useAppDispatch } from 'shared/libs/hooks/useAppDispatch';
-import { auth } from 'features/auth/model/api';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { getStatusRequest } from 'shared/libs/selectors';
+import { fetchAuthUser } from 'features/auth/model/api';
 import cls from './styles.module.scss';
+import {authSelector} from "../model/selectors/authSelector/authSelector";
 
 interface Props {
   setVisible?: (arg: boolean) => void
@@ -13,7 +14,8 @@ interface Props {
 
 const Component: React.FC<Props> = ({ setVisible }) => {
   const dispatch = useAppDispatch();
-  const { success, error } = getStatusRequest();
+  const statusAuth = authSelector();
+
   const email = useInput('', { isEmpty: true, emailValid: true });
   const password = useInput('', { isEmpty: true });
 
@@ -22,7 +24,8 @@ const Component: React.FC<Props> = ({ setVisible }) => {
     password: password.value,
   };
 
-  const handleAuth = () => {
+  const handleAuth = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     email.onBlur();
     password.onBlur();
     if (
@@ -30,18 +33,18 @@ const Component: React.FC<Props> = ({ setVisible }) => {
           && !email.isEmpty
           && !password.isEmpty
     ) {
-      dispatch(auth(authData));
+      dispatch(fetchAuthUser(authData));
     }
   };
 
   useEffect(() => {
     if (setVisible) {
-      success && setVisible(false);
+        statusAuth.data && setVisible(false);
     }
-  }, [success]);
+  }, [statusAuth.data]);
 
   return (
-     <div className={cls.auth__wrapper}>
+     <form className={cls.auth__wrapper} onSubmit={(e) => handleAuth(e)}>
         <div>
            <Input
              type='email'
@@ -63,16 +66,16 @@ const Component: React.FC<Props> = ({ setVisible }) => {
            {(password.isDirty && password.isEmpty) && <ErrorText>Поле не должно быть пустым</ErrorText>}
         </div>
 
-        <Button full variant='xs' background='violet-primary' onClick={handleAuth}>
+        <Button full variant='xs' background='violet-primary'>
            Вход
         </Button>
         {
-             error
+             statusAuth.error
                  && (
                  <ErrorText>Неправильный логин или пароль</ErrorText>
                  )
          }
-     </div>
+     </form>
   );
 };
 
