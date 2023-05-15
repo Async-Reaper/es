@@ -10,20 +10,8 @@ const Component = () => {
   const coursesList = getAllCoursesSelector();
   const dispatch = useAppDispatch();
 
-  const groupedCourses: CoursesType[] = [];
-
-  const saveGroupedCourses = useCallback(() => {
-    coursesList.data?.map(course => {
-      if (course.is_grouped) {
-        groupedCourses.push(course)
-      }
-    })
-    localStorage.setItem('grouped_courses', JSON.stringify(groupedCourses))
-  }, [coursesList])
-
   useEffect(() => {
     dispatch(getAllCourse());
-    saveGroupedCourses()
   }, []);
 
   return (

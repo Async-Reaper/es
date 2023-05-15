@@ -14,6 +14,15 @@ export const getAllCourse = () => async (dispatch: AppDispatch) => {
       }
     });
     const resultResponse = response.data;
+
+    const groupedCourses: CoursesType[] = [];
+    resultResponse?.map(course => {
+      if (course.is_grouped) {
+        groupedCourses.push(course)
+      }
+    })
+    localStorage.setItem('grouped_courses', JSON.stringify(groupedCourses))
+
     dispatch(coursesActions.getAllCourses(resultResponse));
     dispatch(requestActions.successRequest());
   } catch (e) {

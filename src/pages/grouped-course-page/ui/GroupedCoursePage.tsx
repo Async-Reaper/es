@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Sidebar} from 'widgets/sidebar';
 import {AppLink, Typography} from 'shared/ui';
 import cls from './styles.module.scss';
 import {CoursesType} from "widgets/courses-list";
 import {ColoredIcon} from "shared/libs/icons";
 import {useNavigate} from "react-router-dom";
+import {getAllCourse} from "../../../widgets/courses-list/model/api/getAllCourse";
+import {useAppDispatch} from "../../../shared/hooks/useAppDispatch";
 
 const Component = () => {
     const [coursesList, setCoursesList] = useState(JSON.parse(localStorage.getItem('grouped_courses') || ''))
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getAllCourse());
+    }, []);
 
     const navigate = useNavigate();
 
