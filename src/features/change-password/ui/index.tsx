@@ -50,7 +50,7 @@ const Component: React.FC<Props> = ({ setVisible }) => {
      <form className={cls.change_password__wrapper} onSubmit={(e) => handleChangePassword(e)}>
         <div>
            <Input
-             type='email'
+             type='password'
              value={password.value}
              onChange={password.onChange}
              label='Старый пароль'
