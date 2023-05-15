@@ -64,3 +64,13 @@
     color: var(--color-violet-secondary);
   }
 }
+
+.video__lessons {
+  margin: 0 0 20px;
+
+  video {
+    width: 500px;
+    background: var(--color-black-bg);
+    border-radius: var(--border-radius-md);
+  }
+}
