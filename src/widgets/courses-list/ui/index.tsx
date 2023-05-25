@@ -18,6 +18,7 @@ const Component = () => {
      <div className={cls.courses__wrapper}>
        <AppLink to={'/course/grouped-course'} className={cls.course__link}>
          <div className={cls.course__wrapper}>
+           <div className={cls.course_bookmark} />
            <div
                className='course__title'
            >
@@ -29,6 +30,7 @@ const Component = () => {
             !course.is_grouped &&
             <AppLink to={`/course/${course.id}`} className={cls.course__link}>
               <div aria-label={course.id.toString()} className={cls.course__wrapper}>
+                <div className={cls.course_bookmark} />
                 <div
                     className='course__title'
                 >

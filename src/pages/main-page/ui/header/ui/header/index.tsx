@@ -5,16 +5,23 @@ import { ColoredIcon } from 'shared/libs/icons';
 import {
   AppLink, Button, Container, ModalWindow, Typography,
 } from 'shared/ui';
-import { Auth, Logout } from 'features';
+import { Auth } from 'features';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { getInfoUser, getInfoUserSelector } from 'entities/user';
+import { authSelector } from 'features/auth';
+import { LogoutModal } from 'features/logout';
 import cls from './styles.module.scss';
 import { HeaderToolbar } from '../header-toolbar';
-import {authSelector} from "../../../../../../features/auth";
 
-const Component = () => {
+interface Props {
+
+}
+
+const Component: FC<Props> = () => {
   const dispatch = useAppDispatch();
   const [isVisibleLogin, setIsVisibleLogin] = React.useState(false);
+  const [isVisibleLogout, setIsVisibleLogout] = React.useState(false);
+
   const userData = getInfoUserSelector();
   const authData = authSelector();
   const token: string = localStorage.getItem('token') || '';
@@ -62,7 +69,11 @@ const Component = () => {
                                           Перейти в личный кабинет
                                        </HeaderToolbar>
                                     </div>
-                                    <Logout />
+                                    <Button variant='xs' border onClick={() => setIsVisibleLogout(true)}>
+                                       <Typography>
+                                          Выход
+                                       </Typography>
+                                    </Button>
                                  </>
                               )
                               : (
@@ -79,6 +90,7 @@ const Component = () => {
            >
               <Auth setVisible={setIsVisibleLogin} />
            </ModalWindow>
+           <LogoutModal isVisible={isVisibleLogout} setIsVisible={setIsVisibleLogout} />
         </Container>
      </div>
   );

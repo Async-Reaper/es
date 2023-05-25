@@ -15,6 +15,7 @@
       "@shared": ["./shared/"],
       "@pages": ["./pages/"],
       "@widgets": ["./widgets/"],
+      "@mixins": ["./app/styles/_mixins.scss"]
     },
     "moduleResolution": "node",
     "esModuleInterop": true,
