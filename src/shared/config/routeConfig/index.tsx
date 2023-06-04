@@ -5,6 +5,7 @@ import { PrivateCabinet } from 'pages/private-cabinet';
 import { CoursePage } from 'pages/course-page';
 import { TopicPage } from 'pages/topic-page';
 import { GroupedCoursePage } from "pages/grouped-course-page";
+import { TestPage } from "pages/test-page";
 
 export enum AppRoutes {
   MAIN = 'MAIN',
@@ -12,7 +13,8 @@ export enum AppRoutes {
   PLATFORM_COURSE = 'PLATFORM_COURSE',
   PRIVATE_CABINET = 'PRIVATE_CABINET',
   TOPIC = 'TOPIC',
-  GROUPED_COURSE = 'GROUPED_COURSE'
+  GROUPED_COURSE = 'GROUPED_COURSE',
+  TEST = 'TEST'
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -21,7 +23,8 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.PRIVATE_CABINET]: '/private-cabinet',
   [AppRoutes.PLATFORM_COURSE]: '/course/:id',
   [AppRoutes.TOPIC]: '/course/:id/topic/:id',
-  [AppRoutes.GROUPED_COURSE]: '/course/grouped-course'
+  [AppRoutes.GROUPED_COURSE]: '/course/grouped-course',
+  [AppRoutes.TEST]: '/test'
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -48,5 +51,9 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.GROUPED_COURSE]: {
     path: RoutePath.GROUPED_COURSE,
     element: <GroupedCoursePage />,
+  },
+  [AppRoutes.TEST]: {
+    path: RoutePath.TEST,
+    element: <TestPage />,
   }
 };
