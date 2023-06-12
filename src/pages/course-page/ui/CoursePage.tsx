@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Sidebar } from 'widgets/sidebar';
+import { Sidebar } from 'widgets/sidebar/ui/Sidebar/Sidebar';
 import {AppLink, Typography} from 'shared/ui';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import {useNavigate, useParams} from 'react-router-dom';

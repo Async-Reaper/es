@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Sidebar } from 'widgets/sidebar';
+import { Sidebar } from 'widgets/sidebar/ui/Sidebar/Sidebar';
 import { Auth, ChangeEmail, ChangePassword } from 'features';
 import { getInfoUser, getInfoUserSelector } from 'entities/user';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';

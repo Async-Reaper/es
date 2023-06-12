@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Sidebar } from 'widgets/sidebar';
+import { Sidebar } from 'widgets/sidebar/ui/Sidebar/Sidebar';
 import { CoursesList } from 'widgets/courses-list';
 
 const PlatformPage = () => {

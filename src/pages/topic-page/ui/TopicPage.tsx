@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { useParams } from 'react-router-dom';
 import { Typography } from 'shared/ui';
-import { Sidebar } from 'widgets/sidebar';
+import { Sidebar } from 'widgets/sidebar/ui/Sidebar/Sidebar';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { getTopicSelector } from 'entities/topic/model/selector';
 import { getTopic } from 'entities/topic/model/api';

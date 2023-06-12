@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Sidebar} from 'widgets/sidebar';
+import {Sidebar} from 'widgets/sidebar/ui/Sidebar/Sidebar';
 import {AppLink, Typography} from 'shared/ui';
 import cls from './styles.module.scss';
 import {CoursesType} from "widgets/courses-list";
